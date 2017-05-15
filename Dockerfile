@@ -1,6 +1,7 @@
 FROM openjdk:8-jdk
 
-RUN apt-get update && apt-get install -y git curl && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y git curl tree net-tools && rm -rf /var/lib/apt/lists/* && \
+    rm -f /etc/localtime && ln -s /usr/share/zoneinfo/US/Pacific /etc/localtime && echo "alias ll='ls -l'" >> /root/.bashrc
 
 ENV JENKINS_HOME /var/jenkins_home
 ENV JENKINS_SLAVE_AGENT_PORT 50000
